@@ -3,6 +3,10 @@ using System;
 
 public partial class player : Area2D
 {
+	
+	//@onready var tile_map = $"../TileMap" 
+
+
 	[Export]
 	public int Speed { get; set; } = 400;
 	public Vector2 ScreenSize; // Size of the game window.
@@ -18,6 +22,10 @@ public partial class player : Area2D
 	public override void _Process(double delta)
 	{
 		var velocity = Vector2.Zero;
+		if(Input.IsActionPressed("left_click"))
+		{
+			GD.Print("whatever");
+		}
 		
 		if(Input.IsActionPressed("move_right")) 
 		{
@@ -49,10 +57,7 @@ public partial class player : Area2D
 		}
 		
 		Position += velocity * (float)delta;
-		Position = new Vector2(
-			x: Mathf.Clamp(Position.X, 0, ScreenSize.X),
-			y: Mathf.Clamp(Position.Y, 0, ScreenSize.Y)
-		);
+
 		
 		if (velocity.X != 0)
 		{
